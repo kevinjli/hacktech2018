@@ -1,0 +1,41 @@
+.exercise_type_div {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.exercise_image {
+  width: 40%;
+  height: 70px;
+  padding-bottom: 7px;
+}
+
+.exercise_details {
+  font-size: 1.2em;
+  font-weight: 100;
+}
+
+.exercise_complete {
+  font-size: .85em;
+  font-weight: 100;
+}
+
+
+.header_div {
+  background-color: #4B77BE;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.workout_header {
+  font-size: 1.8em;
+  font-weight: 100;
+  padding-top: 17px;
+}
+
+.workout_time {
+  font-weight: 100;
+  font-size: 1.05em;
+  padding-bottom: 20px;
+}
