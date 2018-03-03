@@ -60,4 +60,4 @@ class FirebaseProvider {
   }
 }
 
-module.exports = FirebaseProvider;
+export default FirebaseProvider;

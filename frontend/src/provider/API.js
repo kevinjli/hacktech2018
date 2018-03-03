@@ -1,9 +1,10 @@
 'use strict';
 
-const FirebaseProvider = require('./FirebaseProvider');
+import firebase from 'firebase';
+import FirebaseProvider from './FirebaseProvider';
 
 class API {
-  constructor(firebase) {
+  constructor() {
     this._backend = new FirebaseProvider(firebase);
   }
 
@@ -102,4 +103,4 @@ class API {
   }
 }
 
-module.exports = API;
+export default API;
