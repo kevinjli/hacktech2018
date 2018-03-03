@@ -40,9 +40,10 @@ class API {
     return this._backend.update('/users/', userId, data);
   }
 
-  getTimeOfWorkoutStart(userId) {
-    return this._backend.readOne('/users/', userId)
-      .then(user => user.IsInWorkout ? user.WorkoutStartTime : -1);
+  async getTimeOfWorkoutStart(userId) {
+    const user = await this.readUser(userId);
+
+    return user.IsInWorkout ? user.WorkoutStartTime : -1;
   }
 
   endWorkout(userId) {
@@ -74,22 +75,22 @@ class API {
 
   async fetchNumberOfExercisesForType(userId, type) {
     const user = await this.readUser(userId);
+    const exercises = await this._backend.readAll('/exercises/');
+    const result = Object.keys(exercises).map(e =>
+      user.Exercises && e in user.Exercises && exercises[e].Type == type
+    );
 
-    return this._backend.readAll('/exercises/')
-      .then(exercises => Object.keys(exercises).map(e =>
-        user.Exercises && e in user.Exercises && exercises[e].Type == type
-      ))
-      .then(result => result.filter(r => r).length);
+    return result.filter(r => r).length;
   }
 
   async fetchNumberOfCompletedInSessionExercisesForType(userId, type) {
     const user = await this.readUser(userId);
+    const exercises = await this._backend.readAll('/exercises/');
+    const result = Object.keys(exercises).map(e =>
+      user.CurrentWorkoutExercises && e in user.CurrentWorkoutExercises && exercises[e].Type == type
+    );
 
-    return this._backend.readAll('/exercises/')
-      .then(exercises => Object.keys(exercises).map(e =>
-        user.CurrentWorkoutExercises && e in user.CurrentWorkoutExercises && exercises[e].Type == type
-      ))
-      .then(result => result.filter(r => r).length);
+    return result.filter(r => r).length;
   }
 }
 
