@@ -30,16 +30,12 @@ class ExerciseTypes extends Component {
 
   render() {
     return (
-                    <MuiThemeProvider >
-
-      <div className="exercise-total-component-div">
-
-        {this.generateExerciseComponents()}
-
-           <FloatingActionButton className="floating-create-exercise-button" label="Default" />
-      </div>
-              </MuiThemeProvider>
-
+      <MuiThemeProvider >
+        <div className="exercise-total-component-div">
+          {this.generateExerciseComponents()}
+          <FloatingActionButton className="floating-create-exercise-button" label="Default" />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

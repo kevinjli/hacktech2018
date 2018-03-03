@@ -11,12 +11,10 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
           <Switch>
-            <Route path='/' component={HomePage} />
             <Route path='/group/:type' component={ExerciseListPage} />
+            <Route path='/' component={HomePage} />
           </Switch>
-        </div>
       </BrowserRouter>
     )
   }
