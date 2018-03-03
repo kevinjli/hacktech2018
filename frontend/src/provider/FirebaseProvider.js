@@ -17,7 +17,7 @@ class FirebaseProvider {
   _readJSON(ret, ref, attemptId) {
     return ref.once('value')
       .then((snapshot) => ret.attempt = snapshot.val())
-      .then(() => ret);
+      .then(() => ret.attempt);
   }
 
   _readList(ret, ref) {
