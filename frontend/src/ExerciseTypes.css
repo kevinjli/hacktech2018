@@ -1,4 +1,17 @@
+@import url("https://cdn.bootcss.com/hover.css/2.1.1/css/hover-min.css");
+
 .exercise_type_div {
     width: 50%;
     display: inline-block;
+}
+
+.floating-create-exercise-button {
+    z-index:1000;
+    position: fixed;
+    bottom: 30px;
+    right: 10px;
+}
+
+.exercise-total-component-div {
+    margin-top: 100px;
 }

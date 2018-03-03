@@ -1,0 +1,13 @@
+.complete_workout_div {
+    background-color: #2F5597;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.3em;
+    font-weight: 100;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0px 2px 20px #2C3E50;
+}

@@ -3,6 +3,8 @@ import ExerciseType from './ExerciseType';
 
 import './ExerciseTypes.css';
 import ExerciseTypesList from './fixtures/exerciseTypes'
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class ExerciseTypes extends Component {
 
@@ -26,9 +28,16 @@ class ExerciseTypes extends Component {
   render() {
     const styles = {'background-color': this.props.backgroundColor}
     return (
-      <div>
+                    <MuiThemeProvider >
+
+      <div className="exercise-total-component-div">
+
         {this.generateExerciseComponents()}
+
+           <FloatingActionButton className="floating-create-exercise-button" label="Default" />
       </div>
+              </MuiThemeProvider>
+
     );
   }
 }

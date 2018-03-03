@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import HeaderBar from './HeaderBar';
 import ExerciseTypes from './ExerciseTypes';
+import CompleteWorkout from './CompleteWorkout';
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
       <div className="App">
         <HeaderBar date="5/5/18" timeStart="0" />
         <ExerciseTypes />
+        <CompleteWorkout />
       </div>
     );
   }
