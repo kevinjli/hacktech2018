@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 
 import './ExerciseType.css';
 
-
-
 class ExerciseType extends Component {
   render() {
-    const styles = {'background-color': this.props.backgroundColor}
+    const styles = {'backgroundColor': this.props.backgroundColor}
     return (
       <div className="exercise_type_div" style={styles}>
         <img src={this.props.imageName} className="exercise_image"/>
