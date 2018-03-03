@@ -41,10 +41,9 @@ class API {
     return this._backend.update('/users/', userId, data);
   }
 
-  async getTimeOfWorkoutStart(userId) {
-    const user = await this.readUser(userId);
-
-    return user.IsInWorkout ? user.WorkoutStartTime : -1;
+  getTimeOfWorkoutStart(userId) {
+    return this._backend.readOne('/users/', userId)
+      .then(user => user.IsInWorkout ? user.WorkoutStartTime : -1);
   }
 
   endWorkout(userId) {
@@ -82,24 +81,26 @@ class API {
     return this._backend.update('/users/', userId, data);
   }
 
-  async fetchNumberOfExercisesForType(userId, type) {
-    const user = await this.readUser(userId);
-    const exercises = await this.readExercises();
-    const result = Object.keys(exercises).map(e =>
-      user.Exercises && e in user.Exercises && exercises[e].Type == type
-    );
+  fetchNumberOfExercisesForType(userId, type) {
+    const u = [];
 
-    return result.filter(r => r).length;
+    return this.readUser(userId)
+      .then(user => u.push(user) && this._backend.readAll('/exercises/'))
+      .then(exercises => Object.keys(exercises).map(e =>
+        u[0].Exercises && e in u[0].Exercises && exercises[e].Type == type
+      ))
+      .then(result => result.filter(r => r).length);
   }
 
-  async fetchNumberOfCompletedInSessionExercisesForType(userId, type) {
-    const user = await this.readUser(userId);
-    const exercises = await this.readExercises();
-    const result = Object.keys(exercises).map(e =>
-      user.CurrentWorkoutExercises && e in user.CurrentWorkoutExercises && exercises[e].Type == type
-    );
+  fetchNumberOfCompletedInSessionExercisesForType(userId, type) {
+    const u = [];
 
-    return result.filter(r => r).length;
+    return this.readUser(userId)
+      .then(user => u.push(user) && this._backend.readAll('/exercises/'))
+      .then(exercises => Object.keys(exercises).map(e =>
+        u[0].CurrentWorkoutExercises && e in u[0].CurrentWorkoutExercises && exercises[e].Type == type
+      ))
+      .then(result => result.filter(r => r).length);
   }
 }
 
