@@ -14,27 +14,24 @@ class FirebaseProvider {
     return ref.set(options);
   }
 
-  async _readJSON(ret, ref, attemptId) {
-    const snapshot = await ref.once('value');
-    ret.attempt = snapshot.val();
-
-    return ret.attempt;
+  _readJSON(ret, ref, attemptId) {
+    return ref.once('value')
+      .then((snapshot) => ret.attempt = snapshot.val())
+      .then(() => ret.attempt);
   }
 
-  async _readList(ret, ref) {
-    const snapshot = await ref.once('value');
-    ret = snapshot.val();
-
-    return ret;
+  _readList(ret, ref) {
+    return ref.once('value')
+      .then((snapshot) => ret = snapshot.val())
+      .then(() => ret);
   }
 
-  async create(path, data) {
+  create(path, data) {
     const ref = this._db.ref(path);
     const newItem = ref.push();
     const key = newItem.key;
-    await this._writeJSON(newItem, data);
 
-    return key;
+    return this._writeJSON(newItem, data).then(() => key);
   }
 
   readOne(path, key) {
