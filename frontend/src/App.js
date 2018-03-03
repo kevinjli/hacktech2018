@@ -1,20 +1,22 @@
-import React, { Component } from 'react';
-// import logo from './logo.svg';
-import './App.css';
-import HeaderBar from './HeaderBar';
-import ExerciseTypes from './ExerciseTypes';
-import CompleteWorkout from './CompleteWorkout';
+import React, { Component } from 'react'
+import HomePage from './HomePage';
+import ExerciseListPage from './ExerciseListPage';
+import {
+  HashRouter,
+  Route
+} from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <HeaderBar date="5/5/18" timeStart="0" />
-        <ExerciseTypes />
-        <CompleteWorkout />
-      </div>
-    );
+      <HashRouter>
+        <div>
+          <Route path='/' component={HomePage} />
+          <Route path='/address' component={ExerciseListPage} />
+        </div>
+      </HashRouter>
+    )
   }
 }
 
-export default App;
+export default App

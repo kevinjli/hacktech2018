@@ -14,7 +14,7 @@ class HeaderBar extends Component {
     this.setState({time: Date.now()})
   }
   calculateTimeDeltaInMinutes() {
-    return Number.parseInt((Date.now() - this.props.timeStart)/60000);
+    return Number.parseInt((Date.now() - this.props.timeStart)/60000, 10);
   }
   componentDidMount() {
     this.interval = setInterval(this.tick.bind(this), 1000);
@@ -26,7 +26,7 @@ class HeaderBar extends Component {
     return (
       <div className="header_div">
         <div className="workout_header">
-          Workout for {this.props.date}
+          {this.props.header_title}
         </div>
         <div className="workout_time">
           {this.calculateTimeDeltaInMinutes()} Minutes since workout started

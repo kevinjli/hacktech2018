@@ -10,23 +10,25 @@ class ExerciseTypes extends Component {
 
   generateExerciseComponents() {
     let exerciseTypes = [];
+    let i = 0;
     for (const exerciseType of ExerciseTypesList.data) {
       exerciseTypes.push(
         <ExerciseType
           imageName={exerciseType.image}
           completed='2'
           total='5'
+          key={`${i}`}
           type={exerciseType.name}
           backgroundColor={exerciseType.background_color}
         />
       );
+      i++;
     }
     return exerciseTypes;
   }
 
 
   render() {
-    const styles = {'background-color': this.props.backgroundColor}
     return (
                     <MuiThemeProvider >
 
