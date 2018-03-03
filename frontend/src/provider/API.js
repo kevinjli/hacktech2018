@@ -64,6 +64,14 @@ class API {
     return this._backend.create('/exercises/', data);
   }
 
+  readExercise(exerciseId) {
+    return this._backend.readOne('/exercises/', exerciseId);
+  }
+
+  readExercises() {
+    return this._backend.readAll('/exercises/');
+  }
+
   addExerciseForUser(userId, exerciseId) {
     const data = {
       Exercises: {}
@@ -75,7 +83,7 @@ class API {
 
   async fetchNumberOfExercisesForType(userId, type) {
     const user = await this.readUser(userId);
-    const exercises = await this._backend.readAll('/exercises/');
+    const exercises = await this.readExercises();
     const result = Object.keys(exercises).map(e =>
       user.Exercises && e in user.Exercises && exercises[e].Type == type
     );
@@ -85,7 +93,7 @@ class API {
 
   async fetchNumberOfCompletedInSessionExercisesForType(userId, type) {
     const user = await this.readUser(userId);
-    const exercises = await this._backend.readAll('/exercises/');
+    const exercises = await this.readExercises();
     const result = Object.keys(exercises).map(e =>
       user.CurrentWorkoutExercises && e in user.CurrentWorkoutExercises && exercises[e].Type == type
     );
