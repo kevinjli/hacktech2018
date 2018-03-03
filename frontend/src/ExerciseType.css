@@ -3,7 +3,8 @@
   padding-bottom: 20px;
   color: white;
   font-family: 'Open Sans', sans-serif;
-  position: relative
+  position: relative;
+  text-decoration: none
 }
 
 .exercise_image {
