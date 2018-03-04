@@ -7,6 +7,7 @@
     "google-images": "2.1.0",
     "hover": "3.0.0-alpha.6",
     "material-ui": "0.20.0",
+    "moment": "2.21.0",
     "query-string": "^5.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

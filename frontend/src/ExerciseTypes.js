@@ -6,6 +6,7 @@ import './ExerciseTypes.css';
 import exerciseTypesList from './fixtures/exerciseTypesList';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {fetchRelativeURL} from './utils/FetchUserID';
 
 class ExerciseTypes extends Component {
 
@@ -46,7 +47,7 @@ class ExerciseTypes extends Component {
       <MuiThemeProvider >
         <div className="exercise-total-component-div">
           {this.generateExerciseComponents()}
-          <Link to={`/save`} className="">
+          <Link to={fetchRelativeURL('/save')} className="">
             <FloatingActionButton className="floating-create-exercise-button" label="Default" />
           </Link>
         </div>
