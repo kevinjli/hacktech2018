@@ -1,0 +1,54 @@
+.unicorn {
+    background-color: white;
+    position: fixed;
+    width: 14%;
+    height: 70px;
+    padding-top: 55px;
+    left: 17%;
+    float: left;
+}
+
+.ten_x_header {
+    background-color: white;
+    position: fixed;
+    color: #777777;
+    height: 70px;
+    padding-top: 55px;
+    left: 37%;
+    font-size: 1.8em;
+    font-weight: 100;
+    float:right;
+}
+
+.status {
+    top: 250px;
+    position: relative;
+    width: 70%;
+    float: center;
+    font-size: 1.8em;
+    font-weight: 100;
+    margin-left: 15%;
+}
+
+
+.header_div {
+    background-color: #4B77BE;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+}
+
+.workout_header {
+    font-size: 1.8em;
+    font-weight: 100;
+    padding-top: 17px;
+}
+
+.workout_time {
+    font-weight: 100;
+    font-size: 1.05em;
+    padding-bottom: 20px;
+}

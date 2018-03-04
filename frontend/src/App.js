@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import HomePage from './HomePage';
 import ExerciseListPage from './ExerciseListPage';
+import StartPage from './StartPage';
 import {
   BrowserRouter,
   Route,
@@ -13,8 +14,9 @@ class App extends Component {
       <BrowserRouter>
           <Switch>
             <Route path='/group/:type' component={ExerciseListPage} />
-            <Route path='/' component={HomePage} />
-          </Switch>
+          <Route path='/home' component={HomePage} />
+          <Route path='/' component={StartPage} />
+            </Switch>
       </BrowserRouter>
     )
   }
