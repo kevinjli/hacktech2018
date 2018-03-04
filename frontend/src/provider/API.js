@@ -1,5 +1,3 @@
-'use strict';
-
 import firebase from 'firebase';
 import FirebaseProvider from './FirebaseProvider';
 
@@ -87,7 +85,7 @@ class API {
     return this.readUser(userId)
       .then(user => u.push(user) && this._backend.readAll('/exercises/'))
       .then(exercises => Object.keys(exercises).map(e =>
-        u[0].Exercises && e in u[0].Exercises && exercises[e].Type == type
+        u[0].Exercises && e in u[0].Exercises && exercises[e].Type === type
       ))
       .then(result => result.filter(r => r).length);
   }
@@ -98,10 +96,10 @@ class API {
     return this.readUser(userId)
       .then(user => u.push(user) && this._backend.readAll('/exercises/'))
       .then(exercises => Object.keys(exercises).map(e =>
-        u[0].CurrentWorkoutExercises && e in u[0].CurrentWorkoutExercises && exercises[e].Type == type
+        u[0].CurrentWorkoutExercises && e in u[0].CurrentWorkoutExercises && exercises[e].Type === type
       ))
       .then(result => result.filter(r => r).length);
   }
 }
 
-export default API;
+export const api = new API();

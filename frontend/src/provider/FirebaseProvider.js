@@ -1,5 +1,3 @@
-'use strict';
-
 class FirebaseProvider {
   constructor(firebaseService) {
     const config = {
