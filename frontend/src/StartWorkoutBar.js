@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './StartWorkoutBar.css';
 import {fetchRelativeURL} from './utils/FetchUserID';
+import { api } from './provider/API';
 
 
 class StartWorkoutBar extends Component {
   onLinkClick() {
-  	console.log('Clicked!')
+    api.startWorkout('-L6hunulp8Xw93HEn5DN');
   }
   render() {
     return (
