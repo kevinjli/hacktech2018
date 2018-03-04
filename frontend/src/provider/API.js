@@ -84,10 +84,9 @@ class API {
 
     return this.readUser(userId)
       .then(user => u.push(user) && this._backend.readAll('/exercises/'))
-      .then(exercises => Object.keys(exercises).map(e =>
+      .then(exercises => Object.keys(exercises).filter(e =>
         u[0].Exercises && e in u[0].Exercises && exercises[e].Type === type
-      ))
-      .then(result => result.filter(r => r));
+      ));
   }
 
   readCompletedExercisesForType(userId, type) {
@@ -95,10 +94,9 @@ class API {
 
     return this.readUser(userId)
       .then(user => u.push(user) && this._backend.readAll('/exercises/'))
-      .then(exercises => Object.keys(exercises).map(e =>
+      .then(exercises => Object.keys(exercises).filter(e =>
         u[0].CurrentWorkoutExercises && e in u[0].CurrentWorkoutExercises && exercises[e].Type === type
-      ))
-      .then(result => result.filter(r => r));
+      ));
   }
 
   countExercisesForType(userId, type) {
