@@ -79,25 +79,33 @@ class API {
     return this._backend.update('/users/', userId, data);
   }
 
-  countExercisesForType(userId, type) {
+  readExercisesForType(userId, type) {
     const u = [];
 
     return this.readUser(userId)
       .then(user => u.push(user) && this._backend.readAll('/exercises/'))
       .then(exercises => Object.keys(exercises).map(e =>
         u[0].Exercises && e in u[0].Exercises && exercises[e].Type === type
-      ))
-      .then(result => result.filter(r => r).length);
+      ));
   }
 
-  countCompletedExercisesForType(userId, type) {
+  readCompletedExercisesForType(userId, type) {
     const u = [];
 
     return this.readUser(userId)
       .then(user => u.push(user) && this._backend.readAll('/exercises/'))
       .then(exercises => Object.keys(exercises).map(e =>
         u[0].CurrentWorkoutExercises && e in u[0].CurrentWorkoutExercises && exercises[e].Type === type
-      ))
+      ));
+  }
+
+  countExercisesForType(userId, type) {
+    return this.readExercisesForType(userId, type)
+      .then(result => result.filter(r => r).length);
+  }
+
+  countCompletedExercisesForType(userId, type) {
+    return this.readCompletedExercisesForType(userId, type)
       .then(result => result.filter(r => r).length);
   }
 }
