@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import ExerciseType from './ExerciseType';
 
 import './ExerciseTypes.css';
@@ -45,7 +46,9 @@ class ExerciseTypes extends Component {
       <MuiThemeProvider >
         <div className="exercise-total-component-div">
           {this.generateExerciseComponents()}
-          <FloatingActionButton className="floating-create-exercise-button" label="Default" />
+          <Link to={`/save`} className="">
+            <FloatingActionButton className="floating-create-exercise-button" label="Default" />
+          </Link>
         </div>
       </MuiThemeProvider>
     );
