@@ -31,6 +31,9 @@ h1.ui.header {
   margin-left:auto!important;
   margin-right:auto!important;
   padding:20px;
+  position:fixed;
+  bottom:0px;
+  width:100%;
 }
 
 .save-button:hover {
