@@ -14,11 +14,25 @@ class HomePage extends Component {
   }
 
   render() {
+    const workoutData = {
+      Chest: {
+        completed: 3,
+        total: 6
+      },
+      Biceps:  {
+        completed: 2,
+        total: 5
+      },
+      Triceps:  {
+        completed: 2,
+        total: 10
+      }
+    }
     return (
       <div style={{"textAlign": "center"}}>
         <HeaderBar header_title="
           Workout for 5/5/18" timeStart={this.state.startTime} />
-        <ExerciseTypes />
+        <ExerciseTypes workoutData={workoutData}/>
         <CompleteWorkout />
       </div>
     );
