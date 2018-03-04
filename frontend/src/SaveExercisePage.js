@@ -9,6 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {fetchRelativeURL} from './utils/FetchUserID';
 import swal from 'sweetalert2';
 import { api } from './provider/API';
+import {fetchUserID} from './utils/FetchUserID';
 
 
 class SaveExercisePage extends Component {
@@ -90,7 +91,7 @@ class SaveExercisePage extends Component {
         }
       }
       api.createExercise(data.exerciseName, data.imageURL, data.exerciseType, data.Progress)
-        .then(exercise => api.addExerciseForUser('-L6hunulp8Xw93HEn5DN', exercise));
+        .then(exercise => api.addExerciseForUser(fetchUserID(), exercise));
     }
   }
 

@@ -5,6 +5,7 @@ import CompleteWorkout from './CompleteWorkout';
 import exerciseTypesList from './fixtures/exerciseTypesList';
 import { api } from './provider/API';
 import moment from 'moment'
+import {fetchUserID} from './utils/FetchUserID';
 
 class HomePage extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class HomePage extends Component {
       workoutData: {}
     };
 
-    api.getTimeOfWorkoutStart('-L6hunulp8Xw93HEn5DN')
+    api.getTimeOfWorkoutStart(fetchUserID())
       .then(startTime => this.setState({startTime}));
 
     const workoutData = {};
@@ -21,9 +22,9 @@ class HomePage extends Component {
     for (const exerciseType of exerciseTypesList.data) {
       workoutData[exerciseType.name] = {};
 
-      api.countExercisesForType('-L6hunulp8Xw93HEn5DN', exerciseType.name)
+      api.countExercisesForType(fetchUserID(), exerciseType.name)
         .then(total => workoutData[exerciseType.name].total = total)
-        .then(() => api.countCompletedExercisesForType('-L6hunulp8Xw93HEn5DN', exerciseType.name))
+        .then(() => api.countCompletedExercisesForType(fetchUserID(), exerciseType.name))
         .then(completed => workoutData[exerciseType.name].completed = completed)
         .then(() => this.setState({workoutData}));
     }

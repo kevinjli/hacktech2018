@@ -3,6 +3,7 @@ import HeaderBar from './HeaderBar';
 import CompleteWorkout from './CompleteWorkout';
 import ExerciseCells from './ExerciseCells';
 import { api } from './provider/API';
+import {fetchUserID} from './utils/FetchUserID';
 
 class ExerciseListPage extends Component {
   constructor(props) {
@@ -12,10 +13,10 @@ class ExerciseListPage extends Component {
       exerciseType: props.match.params.type
     };
 
-    api.getTimeOfWorkoutStart('-L6hunulp8Xw93HEn5DN')
+    api.getTimeOfWorkoutStart(fetchUserID())
       .then(startTime => this.setState({startTime}));
 
-    api.readExercisesForType('-L6hunulp8Xw93HEn5DN', this.state.exerciseType)
+    api.readExercisesForType(fetchUserID(), this.state.exerciseType)
       .then(workoutData => {
         console.log(workoutData);
         this.setState({workoutData:workoutData})
