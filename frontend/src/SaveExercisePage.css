@@ -20,6 +20,7 @@ h1.ui.header {
 .ui.container {
   margin-left:auto!important;
   margin-right:auto!important;
+  width:100%;
 }
 
 .save-button {
@@ -42,4 +43,20 @@ h1.ui.header {
 
 .save-button:active {
   background-color:#2E7D32;
+}
+
+.back-button {
+  font-size: 1.8em;
+  color:white;
+  position:fixed;
+  top:23px;
+  left:20px;
+}
+
+.back-button:hover {
+  background-color:#0277BD;
+}
+
+.back-button:active {
+  background-color:#01579B;
 }

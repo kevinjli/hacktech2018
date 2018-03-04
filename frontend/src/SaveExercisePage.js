@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom'
 import {Button, Container, Divider, Dropdown, Header} from 'semantic-ui-react';
+import {MdArrowBack} from 'react-icons/lib/md';
 import 'semantic-ui-css/semantic.min.css';
 import './SaveExercisePage.css';
 
@@ -59,6 +61,9 @@ class SaveExercisePage extends Component {
     return (
       <div className="SaveExercisePage">
         <Container className='center aligned'>
+          <Link to="/home">
+            <div className="back-button"><MdArrowBack /></div>
+          </Link>
           <div className="topheader">
             <Header as='h1'>New Exercise</Header>
           </div>
