@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import ExerciseType from './ExerciseType';
 
 import './ExerciseTypes.css';
-import ExerciseTypesList from './fixtures/exerciseTypes'
+import exerciseTypesList from './fixtures/exerciseTypesList';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -25,7 +25,7 @@ class ExerciseTypes extends Component {
 
   generateExerciseComponents() {
     let exerciseTypes = [];
-    for (const exerciseType of ExerciseTypesList.data) {
+    for (const exerciseType of exerciseTypesList.data) {
       exerciseTypes.push(
         <ExerciseType
           imageName={exerciseType.image}

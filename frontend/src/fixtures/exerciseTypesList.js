@@ -1,4 +1,4 @@
-const exerciseTypes = {
+const exerciseTypesList = {
   'data': [
     {
       'name': 'Chest',
@@ -42,4 +42,4 @@ const exerciseTypes = {
     }
   ]
 }
-export default exerciseTypes;
+export default exerciseTypesList;

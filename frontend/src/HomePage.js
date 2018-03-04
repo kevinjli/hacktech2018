@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import HeaderBar from './HeaderBar';
 import ExerciseTypes from './ExerciseTypes';
 import CompleteWorkout from './CompleteWorkout';
+import exerciseTypesList from './fixtures/exerciseTypesList';
 import { api } from './provider/API';
 
 class HomePage extends Component {
