@@ -20,9 +20,9 @@ class HomePage extends Component {
     for (const exerciseType of exerciseTypesList.data) {
       workoutData[exerciseType.name] = {};
 
-      api.fetchNumberOfExercisesForType('-L6hunulp8Xw93HEn5DN', exerciseType.name)
+      api.countExercisesForType('-L6hunulp8Xw93HEn5DN', exerciseType.name)
         .then(total => workoutData[exerciseType.name].total = total)
-        .then(() => api.fetchNumberOfCompletedInSessionExercisesForType('-L6hunulp8Xw93HEn5DN', exerciseType.name))
+        .then(() => api.countCompletedExercisesForType('-L6hunulp8Xw93HEn5DN', exerciseType.name))
         .then(completed => workoutData[exerciseType.name].completed = completed)
         .then(() => this.setState({workoutData}));
     }

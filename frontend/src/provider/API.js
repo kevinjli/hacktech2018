@@ -79,7 +79,7 @@ class API {
     return this._backend.update('/users/', userId, data);
   }
 
-  fetchNumberOfExercisesForType(userId, type) {
+  countExercisesForType(userId, type) {
     const u = [];
 
     return this.readUser(userId)
@@ -90,7 +90,7 @@ class API {
       .then(result => result.filter(r => r).length);
   }
 
-  fetchNumberOfCompletedInSessionExercisesForType(userId, type) {
+  countCompletedExercisesForType(userId, type) {
     const u = [];
 
     return this.readUser(userId)
