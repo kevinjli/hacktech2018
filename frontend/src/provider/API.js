@@ -52,12 +52,14 @@ class API {
     return this._backend.update('/users/', userId, data);
   }
 
-  createExercise(name, imageURL, type) {
+  createExercise(name, imageURL, type, values={}) {
     const data = {
       Name: name,
       ImageURL: imageURL,
-      Type: type
+      Type: type,
+      Progress: {}
     };
+    if (values) data.Progress[Date.now()] = values;
 
     return this._backend.create('/exercises/', data);
   }
@@ -70,13 +72,28 @@ class API {
     return this._backend.readAll('/exercises/');
   }
 
-  addExerciseForUser(userId, exerciseId) {
-    const data = {
-      Exercises: {}
+  addProgressForExercise(exerciseId, numSets, numReps, weight) {
+    const values = {
+      NumSets: numSets,
+      NumReps:  numReps,
+      Weight: weight
     };
-    data.Exercises[exerciseId] = true;
 
-    return this._backend.update('/users/', userId, data);
+    return this._backend.readOne('/exercises/', exerciseId)
+      .then(data => {
+        data.Progress[Date.now()] = values;
+        return data;
+      })
+      .then(data => this._backend.update('/exercises/', exerciseId, data));
+  }
+
+  addExerciseForUser(userId, exerciseId) {
+    return this._backend.readOne('/users/', userId)
+      .then(user => {
+        user.Exercises[exerciseId] = true;
+        return user;
+      })
+      .then(data => this._backend.update('/users/', userId, data));
   }
 
   readExercisesForType(userId, type) {
