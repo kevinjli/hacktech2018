@@ -12,6 +12,9 @@ class ExerciseListPage extends Component {
       exerciseType: props.match.params.type
     };
 
+    api.getTimeOfWorkoutStart('-L6hunulp8Xw93HEn5DN')
+      .then(startTime => this.setState({startTime}));
+
     api.readExercisesForType('-L6hunulp8Xw93HEn5DN', this.state.exerciseType)
       .then(workoutData => {
         console.log(workoutData);
@@ -24,7 +27,7 @@ class ExerciseListPage extends Component {
     const headerString = `${this.state.exerciseType} Exercises`;
     return (
       <div style={{"textAlign": "center"}}>
-        <HeaderBar header_title={headerString} timeStart="0" />
+        <HeaderBar header_title={headerString} timeStart={this.state.startTime} />
         <ExerciseCells workoutData={this.state.workoutData} />
         <CompleteWorkout />
       </div>
