@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
-import {MdArrowBack} from 'react-icons/lib/md';
 import './SaveExercisePage.css';
 import HeaderBar from './HeaderBar';
 import TextField from 'material-ui/TextField';
@@ -62,8 +61,6 @@ class SaveExercisePage extends Component {
       image.classList.remove("image-selected");
     }
     ev.target.classList.add("image-selected");
-
-    // image-selected
   }
 
   submitNewExercise(ev) {

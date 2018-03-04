@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
 import './HeaderBar.css';
-
+import {MdArrowBack} from 'react-icons/lib/md';
 
 
 class HeaderBar extends Component {
