@@ -8,6 +8,7 @@ import MenuItem from 'material-ui/MenuItem';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {fetchRelativeURL} from './utils/FetchUserID';
 import swal from 'sweetalert2';
+import { api } from './provider/API';
 
 
 class SaveExercisePage extends Component {
@@ -81,9 +82,15 @@ class SaveExercisePage extends Component {
       const data = {
         exerciseType: types[this.state.exerciseCategory],
         exerciseName: document.getElementById("new-exercise-field").value,
-        imageURL: document.getElementsByClassName("image-selected")[0].src
+        imageURL: document.getElementsByClassName("image-selected")[0].src,
+        Progress: {
+          NumSets: 10,
+          NumReps: 10,
+          Weight: 10
+        }
       }
-      console.log(data);
+      api.createExercise(data.exerciseName, data.imageURL, data.exerciseType, data.Progress)
+        .then(exercise => api.addExerciseForUser('-L6hunulp8Xw93HEn5DN', exercise));
     }
   }
 
