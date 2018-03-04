@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import SaveExercisePage from './SaveExercisePage';
 import registerServiceWorker from './registerServiceWorker';
 import WebFont from 'webfontloader';
 
@@ -12,5 +11,5 @@ WebFont.load({
   }
 });
 
-ReactDOM.render(<SaveExercisePage />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
