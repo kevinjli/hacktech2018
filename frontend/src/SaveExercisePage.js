@@ -8,6 +8,8 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {fetchRelativeURL} from './utils/FetchUserID';
+import swal from 'sweetalert2';
+
 
 class SaveExercisePage extends Component {
   constructor(props) {
@@ -65,7 +67,27 @@ class SaveExercisePage extends Component {
   }
 
   submitNewExercise(ev) {
-    ev.preventDefault();
+    if (this.state.exerciseCategory == 0) {
+      swal("Uh oh", "Please select an exercise category", "error");
+      ev.preventDefault();
+    }
+    else if (document.getElementById("new-exercise-field").value.trim().length == 0) {
+      swal("Uh oh", "Please provide an exercise name", "error");
+      ev.preventDefault();
+    }
+    else if (document.getElementsByClassName("image-selected").length == 0) {
+      swal("Uh oh", "Please select an exercise image", "error");
+      ev.preventDefault();
+    }
+    else {
+      const types = ["", "Chest", "Biceps", "Triceps", "Abs", "Legs", "Neck", "Shoulders", "Glutes"];
+      const data = {
+        exerciseType: types[this.state.exerciseCategory],
+        exerciseName: document.getElementById("new-exercise-field").value,
+        imageURL: document.getElementsByClassName("image-selected")[0].src
+      }
+      console.log(data);
+    }
   }
 
   render() {
