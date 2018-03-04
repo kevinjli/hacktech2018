@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom'
 import './ExerciseType.css';
 
 class ExerciseType extends Component {
-  componentWillUnmount() {
-    console.log("EXERCISE TYPE UNMOUNT");
-  }
-
   render() {
     const styles = {'backgroundColor': this.props.backgroundColor}
     return (

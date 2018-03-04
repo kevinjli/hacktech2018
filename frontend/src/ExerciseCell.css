@@ -1,0 +1,41 @@
+.exercise-cell-image {
+  height: 60px;
+  padding-left: 5%;
+  max-width: 25%;
+}
+
+.exercise-cell-text {
+  display: inline-block;
+  font-size: 1.25em;
+  font-weight: 300;
+  text-align:center;
+  position: relative;
+  width: 70%;
+  top: -10px;
+}
+
+.exercise-cell-complete-button {
+  width: 30%;
+  z-index:100;
+}
+
+.completed-border {
+  background-color: #26A65B;
+  margin-bottom: 5px;
+  color: white;
+  transition: background-color 0.5s, color 0.5s;
+
+}
+
+.exercise-cell-subtext {
+  font-size: 0.7em;
+  margin-top: 0.5em;
+}
+
+.exercise-cell {
+  padding-top: 25px;
+  border-bottom: 1px solid #4b76be;
+  text-align: left;
+  transition: background-color 0.5s, color 0.5s;
+
+}

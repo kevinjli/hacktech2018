@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import HeaderBar from './HeaderBar';
 import CompleteWorkout from './CompleteWorkout';
-import ExerciseCell from './ExerciseCell';
+import ExerciseCells from './ExerciseCells';
 
 class ExerciseListPage extends Component {
   render() {
@@ -10,6 +10,7 @@ class ExerciseListPage extends Component {
     return (
       <div style={{"textAlign": "center"}}>
         <HeaderBar header_title={headerString} timeStart="0" />
+        <ExerciseCells />
         <CompleteWorkout />
       </div>
     );
