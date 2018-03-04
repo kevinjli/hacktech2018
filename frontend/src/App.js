@@ -14,9 +14,9 @@ class App extends Component {
       <BrowserRouter>
           <Switch>
             <Route path='/group/:type' component={ExerciseListPage} />
-          <Route path='/home' component={HomePage} />
-          <Route path='/' component={StartPage} />
-            </Switch>
+            <Route path='/home' component={HomePage} />
+            <Route path='/' component={StartPage} />
+          </Switch>
       </BrowserRouter>
     )
   }

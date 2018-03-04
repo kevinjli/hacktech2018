@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './StartWorkoutBar.css';
-
+import {fetchRelativeURL} from './utils/FetchUserID';
 
 
 class StartWorkoutBar extends Component {
@@ -10,11 +10,11 @@ class StartWorkoutBar extends Component {
   }
   render() {
     return (
-    <Link to = '/Home' onClick={this.onLinkClick}>
-      <div className="start_workout_div">
-        Start Workout
-      </div>
-     </Link>
+      <Link to ={fetchRelativeURL('/Home')} onClick={this.onLinkClick}>
+        <div className="start_workout_div">
+          Start Workout
+        </div>
+       </Link>
     );
   }
 }
