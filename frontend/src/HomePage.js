@@ -29,10 +29,13 @@ class HomePage extends Component {
   }
 
   render() {
+    const date = new Date();
+    date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+    const title = 'Workout for ' + date.toISOString().split('T')[0];
+
     return (
       <div style={{"textAlign": "center"}}>
-        <HeaderBar header_title="
-          Workout for 5/5/18" timeStart={this.state.startTime} />
+        <HeaderBar header_title={title} timeStart={this.state.startTime} />
         <ExerciseTypes workoutData={this.state.workoutData}/>
         <CompleteWorkout />
       </div>
