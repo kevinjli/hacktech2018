@@ -23,13 +23,14 @@ class HeaderBar extends Component {
     clearInterval(this.interval);
   }
   render() {
+    const workoutTime = `${this.calculateTimeDeltaInMinutes()} Minutes since workout started`
     return (
       <div className="header_div">
         <div className="workout_header">
           {this.props.header_title}
         </div>
         <div className="workout_time">
-          {this.calculateTimeDeltaInMinutes()} Minutes since workout started
+          {this.props.hideWorkoutTime ? '' : workoutTime}
         </div>
       </div>
     );

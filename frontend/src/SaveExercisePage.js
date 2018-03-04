@@ -1,104 +1,110 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
-import {Button, Container, Divider, Dropdown, Header} from 'semantic-ui-react';
 import {MdArrowBack} from 'react-icons/lib/md';
-import 'semantic-ui-css/semantic.min.css';
 import './SaveExercisePage.css';
+import HeaderBar from './HeaderBar';
+import TextField from 'material-ui/TextField';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {fetchRelativeURL} from './utils/FetchUserID';
 
 class SaveExercisePage extends Component {
   constructor(props) {
     super(props);
+    this.state = {exerciseCategory: 0};
+  }
+  handleChange (event, index, value) {
+    this.setState({exerciseCategory: value});
+  }
 
-    var exerciseTypeOptions = [
-      {value:'chest', text:'Chest'},
-      {value:'legs', text:'Legs'}
-    ];
+  fetchImagesForText(text) {
+    fetch("https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=" + text, {
+      headers: new Headers({
+        'Ocp-Apim-Subscription-Key': 'd7d5635088284aeca8dc9eb6868574c4',
+      }),
+      method: 'GET', // *GET, PUT, DELETE, etc.
+    }).then((response) => response.json()).then((response) => {
+      const imageUrls = [];
+      for (let image of response.value) {
+        imageUrls.push(image.thumbnailUrl)
+      }
+      this.setState({imageURLs: imageUrls})
+    })
+  }
 
-    var exerciseNames = {
-      chest:[
-        {value:'benchpress', text:'Benchpress'},
-        {value:'inclinedumbbellpress', text:'Incline Dumbbell Press'}
-      ],
-      legs:[
-        {value:'squat', text:'Squat'},
-        {value:'legpress', text:'Leg Press'}
-      ]
-    };
+  onTextChange (ev, text) {
+    setTimeout(() => {
+      if (document.getElementById('new-exercise-field').value == text)
+        this.fetchImagesForText(text);
+    }, 500);
+  }
 
-    var exerciseWeightOptions = [];
-    for(var i = 0; i < 15; i++) {
-      var weightVal = ''+(i*10);
-      exerciseWeightOptions.push({
-        value:weightVal,
-        text:weightVal
-      });
+  renderImages() {
+    const images = [];
+    if (!this.state.imageURLs)
+      return [];
+    const imageURLS = this.state.imageURLs.slice(0, 6);
+
+    for (const imageURL of imageURLS) {
+      images.push(
+        <img className="image-result" onClick={this.selectImage.bind(this)} key={imageURL} src={imageURL} />
+      );
     }
-
-    this.state = {
-      exerciseTypeOptions: exerciseTypeOptions,
-      exerciseNameOptions: [],
-      exerciseWeightOptions: exerciseWeightOptions,
-      exerciseNames: exerciseNames
-    };
-
-    this.exerciseTypeSelected = this.exerciseTypeSelected.bind(this);
-    this.saveExercise = this.saveExercise.bind(this);
+    return images;
   }
 
-  exerciseTypeSelected(event, data) {
-    console.log('exercise type selected');
-    this.setState({
-      exerciseNameOptions: this.state.exerciseNames[data.value]
-    });
+  selectImage(ev, el) {
+    const selectedImages = document.getElementsByClassName("image-selected");
+    for (const image of selectedImages) {
+      image.classList.remove("image-selected");
+    }
+    ev.target.classList.add("image-selected");
+
+    // image-selected
   }
 
-  saveExercise() {
-    console.log('save exercise');
-    //Do some databasing
+  submitNewExercise(ev) {
+    ev.preventDefault();
   }
 
   render() {
     return (
-      <div className="SaveExercisePage">
-        <Container className='center aligned'>
-          <Link to="/home">
-            <div className="back-button"><MdArrowBack /></div>
-          </Link>
-          <div className="topheader">
-            <Header as='h1'>New Exercise</Header>
+      <div style={{"textAlign": "center"}}>
+        <HeaderBar hideWorkoutTime={true} header_title="Add Exercise" />
+        <div style={{"marginTop": "100px", "textAlign": "left"}}>
+          <MuiThemeProvider>
+            <TextField
+              id="new-exercise-field"
+              hintText="i.e. Bench Press"
+              floatingLabelText="Exercise Name"
+              floatingLabelFixed={true}
+              className="exercise-name-field"
+              onChange={this.onTextChange.bind(this)}
+            />
+          </MuiThemeProvider>
+          <MuiThemeProvider>
+            <DropDownMenu className="exercise-category" onChange={this.handleChange.bind(this)} value={this.state.exerciseCategory}  openImmediately={false}>
+              <MenuItem value={0} primaryText="Choose an Exercise Type" />
+              <MenuItem value={1} primaryText="Chest" />
+              <MenuItem value={2} primaryText="Biceps" />
+              <MenuItem value={3} primaryText="Triceps" />
+              <MenuItem value={4} primaryText="Abs" />
+              <MenuItem value={5} primaryText="Legs" />
+              <MenuItem value={6} primaryText="Neck" />
+              <MenuItem value={7} primaryText="Shoulders" />
+              <MenuItem value={8} primaryText="Glutes" />
+            </DropDownMenu>
+          </MuiThemeProvider>
+          <div className="images">
+            {this.renderImages()}
           </div>
-
-          <Divider hidden />
-          <Header className='centered' as='h2'>Exercise Type:</Header>
-          <Dropdown 
-            placeholder='Exercise Type' 
-            selection
-            search
-            options={this.state.exerciseTypeOptions}
-            onChange={this.exerciseTypeSelected}
-            />
-
-          <Divider hidden />
-          <Header as='h2'>Exercise Name:</Header>
-          <Dropdown 
-            placeholder='Exercise Name' 
-            selection
-            search
-            options={this.state.exerciseNameOptions}
-            />
-
-          <Divider hidden />
-          <Header as='h2'>Weight (lbs):</Header>
-          <Dropdown 
-            placeholder='Exercise Weight' 
-            selection
-            search
-            options={this.state.exerciseWeightOptions}
-            />
-
-          <Divider hidden />
-          <div className='save-button' onClick={this.saveExercise}>Save Exercise</div>
-        </Container>
+        </div>
+        <Link to ={fetchRelativeURL('/Home')} onClick={this.submitNewExercise.bind(this)}>
+          <div className="start_workout_div">
+            Save Exercise
+          </div>
+         </Link>
       </div>
     );
   }
