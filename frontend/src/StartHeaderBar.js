@@ -9,7 +9,7 @@ class StartHeaderBar extends Component {
     return (
       <div className="start_header_div">
         <div>
-          <img className='unicorn' src="https://cdn.pixabay.com/photo/2017/01/25/08/11/unicorn-2007266_1280.png"/>
+          <img className='unicorn' src="https://png.icons8.com/material/48/2980b9/unicorn.png"/>
           <h1 className="ten_x_header">
           Ten-X Muscles
           </h1>

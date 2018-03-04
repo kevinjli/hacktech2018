@@ -8,11 +8,18 @@ function fetchUserID () {
 	}
 	else {
 		swal('Oops...', 'Something went wrong! Please try again later.', 'error');
+		console.log('error handling')
+    throw Error();
 	}
 }
 
 function fetchRelativeURL(url) {
-  return `${url}?userID=${fetchUserID()}`;
+  try {
+    return `${url}?userID=${fetchUserID()}`;
+  }
+  catch (error) {
+    return '';
+  }
 }
 
 export {fetchUserID, fetchRelativeURL};
