@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Container, Divider, Dropdown, Header} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
+import './SaveExercisePage.css';
 
 class SaveExercisePage extends Component {
   constructor(props) {
@@ -58,8 +59,9 @@ class SaveExercisePage extends Component {
     return (
       <div className="SaveExercisePage">
         <Container className='center aligned'>
-          <Divider hidden />
-          <Header as='h1'>New Exercise</Header>
+          <div className="topheader">
+            <Header as='h1'>New Exercise</Header>
+          </div>
 
           <Divider hidden />
           <Header className='centered' as='h2'>Exercise Type:</Header>
@@ -90,7 +92,7 @@ class SaveExercisePage extends Component {
             />
 
           <Divider hidden />
-          <Button primary onClick={this.saveExercise}>Save Exercise</Button>
+          <div className='save-button' onClick={this.saveExercise}>Save Exercise</div>
         </Container>
       </div>
     );

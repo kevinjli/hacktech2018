@@ -1,0 +1,42 @@
+.SaveExercisePage {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.topheader {
+  background-color:#4B77BE;
+  color:white;
+  padding:20px;
+}
+
+.ui.header {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100;
+}
+
+h1.ui.header {
+  color:white;
+}
+
+.ui.container {
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+.save-button {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.8em;
+  font-weight: 100;
+  background-color:#43A047;
+  color:white;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding:20px;
+}
+
+.save-button:hover {
+  background-color:#388E3C;
+}
+
+.save-button:active {
+  background-color:#2E7D32;
+}
